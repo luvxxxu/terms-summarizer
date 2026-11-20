@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>약관 요약 설정</title>
+  <link rel="stylesheet" href="popup.css">
+  <style>
+    body { width: auto; max-height: none; padding: 24px 16px; }
+    .wrap { max-width: 640px; margin: 0 auto; }
+    h1 { font-size: 20px; margin: 0 0 4px; }
+    .sub { color: var(--muted); margin: 0 0 20px; }
+    fieldset { border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin: 0 0 16px; }
+    legend { font-weight: 700; padding: 0 6px; }
+    .row { display: grid; grid-template-columns: 130px 1fr; gap: 8px; align-items: center; margin: 8px 0; }
+    .row > span { color: var(--muted); }
+    input, select { width: 100%; padding: 7px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--fg); font: inherit; }
+    .hint { color: var(--muted); font-size: 12px; margin: 2px 0 0 138px; }
+    .radio-row { display: flex; gap: 8px; align-items: center; margin-bottom: 4px; }
+    .radio-row input { width: auto; }
+    .bar { display: flex; gap: 10px; align-items: center; position: sticky; bottom: 0; background: var(--bg); padding: 12px 0; }
+    #status { color: var(--muted); }
+    #status.err { color: var(--danger); }
+    @media (max-width: 520px) { .row { grid-template-columns: 1fr; } .hint { margin-left: 0; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>📜 약관 요약 설정</h1>
+    <p class="sub">API 키는 이 브라우저의 확장 저장소에만 저장되며, 선택한 제공자에게 요청을 보낼 때만 사용됩니다.</p>
+
+    <fieldset>
+      <legend>기본 설정</legend>
+      <div class="row"><span>사용할 제공자</span><select id="activeProvider"></select></div>
+      <div class="row"><span>요약 언어</span><input id="language" placeholder="한국어"></div>
+      <div class="row"><span>최대 입력 길이</span><input id="maxChars" type="number" min="1000" step="1000"></div>
+      <p class="hint">이보다 긴 문서는 앞부분만 보내고 팝업에 알려줍니다 (문자 수).</p>
+    </fieldset>
+
+    <div id="providers"></div>
+
+    <div class="bar">
+      <button id="save" class="primary" style="flex:none;padding:8px 22px">저장</button>
+      <button id="test">연결 테스트</button>
+      <span id="status"></span>
+    </div>
+  </div>
+  <script type="module" src="options.js"></script>
+</body>
+</html>
